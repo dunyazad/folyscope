@@ -305,28 +305,28 @@ SET(HEADERS
 )
 
 # Create a single library for the project
-add_library(polyscope ${SRCS} ${BACKEND_SRCS} ${HEADERS} ${BACKEND_HEADERS})
+add_library(folyscope ${SRCS} ${BACKEND_SRCS} ${HEADERS} ${BACKEND_HEADERS})
 
 # Mark the library target and its headers as installable
-install(TARGETS polyscope)
+install(TARGETS folyscope)
 install(DIRECTORY ${INCLUDE_ROOT}/ DESTINATION "${CMAKE_INSTALL_PREFIX}/include/polyscope")
 
 # Required compiler settings
-set_property(TARGET polyscope PROPERTY CXX_STANDARD 11)
-set_property(TARGET polyscope PROPERTY CXX_STANDARD_REQUIRED TRUE)
-set_target_properties(polyscope PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
+set_property(TARGET folyscope PROPERTY CXX_STANDARD 11)
+set_property(TARGET folyscope PROPERTY CXX_STANDARD_REQUIRED TRUE)
+set_target_properties(folyscope PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 add_definitions(-DNOMINMAX)
 
 # Include settings
-target_include_directories(polyscope PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include")
-target_include_directories(polyscope PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../deps/glm")
-#target_include_directories(polyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/args") # not used, polyscope generates no apps directly
-target_include_directories(polyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/happly")
-target_include_directories(polyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/json/include")
-target_include_directories(polyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/stb")
-target_include_directories(polyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/MarchingCubeCpp/include")
-target_include_directories(polyscope PRIVATE "${BACKEND_INCLUDE_DIRS}")
+target_include_directories(folyscope PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../include")
+target_include_directories(folyscope PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../deps/glm")
+#target_include_directories(folyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/args") # not used, polyscope generates no apps directly
+target_include_directories(folyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/happly")
+target_include_directories(folyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/json/include")
+target_include_directories(folyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/stb")
+target_include_directories(folyscope PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../deps/MarchingCubeCpp/include")
+target_include_directories(folyscope PRIVATE "${BACKEND_INCLUDE_DIRS}")
         
 # Link settings
-target_link_libraries(polyscope PUBLIC imgui)
-target_link_libraries(polyscope PRIVATE "${BACKEND_LIBS}" stb MarchingCube)
+target_link_libraries(folyscope PUBLIC imgui)
+target_link_libraries(folyscope PRIVATE "${BACKEND_LIBS}" stb MarchingCube)
